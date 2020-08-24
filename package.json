@@ -1,0 +1,13 @@
+{
+  "name": "l4d2-server-bot",
+  "version": "1.0.0",
+  "description": "l4d2-server-bot",
+  "main": "bot.js",
+  "author": "atros",
+  "dependencies": {
+    "aws": "0.0.3-2",
+    "aws-sdk": "^2.738.0",
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "winston": "^3.3.3"
+  }
+}
