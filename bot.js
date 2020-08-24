@@ -10,6 +10,12 @@ function isSupportedRegion(region) {
 }
 
 
+function handleError(e) { 
+  logger.error(e.message);
+  return "I've failed executing the action, check my logs!"
+}
+
+
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
     colorize: true
@@ -48,12 +54,12 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
               message = "Valid commands are:\n\n!server-start <region>\n!server-stop <region>\n!server-status";
             break;
             case 'server-status':
-              message = await serverStatus().catch(e => {logger.error(e.message); return "I've failed executing the action, check my logs!" });
+              message = await serverStatus().catch(handleError);
             break;
             case 'server-start':
                 let upRegion = args[0];
                 if (isSupportedRegion(upRegion)) {
-                  message = await serverUp(upRegion).catch(e => {logger.error(e.message); return "I've failed executing the action, check my logs!" });
+                  message = await serverUp(upRegion).catch(handleError);
                 } else {
                   message = `I can't spin up servers on ${upRegion}, supported regions are: ` + config.supported_regions.join(', ');
                 }
