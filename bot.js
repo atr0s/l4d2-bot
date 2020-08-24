@@ -36,8 +36,8 @@ bot.on('ready', function (evt) {
 bot.on('message', async function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    logger.info(`<${user}> ${message}`);
-    if (message.substring(0, 1) == '!') {
+    logger.info(`#${channelID} <${user}> ${message}`);
+    if (message.substring(0, 1) == '!' && config.allowed_channels.includes(channelID)) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
        
@@ -77,7 +77,7 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
               message = 'I don\'t understand that command';
             break;
             // Just add any case commands if you want to..
-        }
+        }!
         bot.sendMessage({
           to: channelID,
           message: message
