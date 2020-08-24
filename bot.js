@@ -67,7 +67,7 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
             case 'server-stop':
                 let downRegion = args[0];
                 if (isSupportedRegion(downRegion)) {
-                  message = await serverDown(downRegion).catch(e => {logger.error(e.message); return "I've failed executing the action, check my logs!" });
+                  message = await serverDown(downRegion).catch(handleError);
                 } else {
                   message = `I can't kill servers on ${downRegion}, supported regions are: ` + config.supported_regions.join(', ');
                 }
