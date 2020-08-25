@@ -1,0 +1,14 @@
+[Unit]
+Description=l4d2-server
+
+[Service]
+Environment=AWS_PROFILE=l4d2-bot
+WorkingDirectory=/home/l4d2-bot/l4d2-bot
+ExecStart=/home/l4d2-bot/l4d2-bot/botwrapper.sh
+User=l4d2-bot
+Type=simple
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
